@@ -1,12 +1,21 @@
 import React, { FC } from "react";
-import { Container } from "../shared";
 import { Layout } from "../app";
-import { Banner } from "../widgets";
+import {
+  Banner,
+  CreateProfiles,
+  DownloadSeries,
+  SeeAnywhere,
+  WatchOnTv,
+} from "../widgets";
 
 export const HomePage: FC = () => {
   return (
     <Layout>
       <Banner />
+      <WatchOnTv />
+      <DownloadSeries />
+      <SeeAnywhere />
+      <CreateProfiles />
     </Layout>
   );
 };
