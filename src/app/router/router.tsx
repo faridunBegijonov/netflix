@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { Error, HomePage, MovieDetail, Movies } from "../../pages";
+import { Auth, Error, HomePage, MovieDetail, Movies } from "../../pages";
 
 export const router = createBrowserRouter([
   {
@@ -19,5 +19,9 @@ export const router = createBrowserRouter([
   {
     path: "/movies/similar/:id",
     element: <MovieDetail />,
+  },
+  {
+    path: "/login",
+    element: <Auth />,
   },
 ]);

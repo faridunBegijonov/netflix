@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { Button, Container } from "../../shared";
+import { Link } from "react-router-dom";
 
 export const Banner: FC = () => {
   return (
@@ -22,14 +23,15 @@ export const Banner: FC = () => {
               Готовы смотреть? Введите адрес электронной почты, чтобы оформить
               или возобновить подписку.
             </p>
-            <Button
-              arrow={true}
-              variant="contained"
-              size="md:text-[28px] text-[20px] mx-auto mt-2 "
-              link="/movies"
-            >
-              Смотреть
-            </Button>
+            <Link to="/movies">
+              <Button
+                arrow={true}
+                variant="contained"
+                size="md:text-[28px] text-[20px] mx-auto mt-2 "
+              >
+                Смотреть
+              </Button>
+            </Link>
           </Container>
         </div>
       </div>

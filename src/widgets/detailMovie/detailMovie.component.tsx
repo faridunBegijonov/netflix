@@ -1,21 +1,26 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   Button,
   Container,
   IMovieType,
   MovieCard,
+  useAppSelector,
   useGetAllMovies,
   useGetMovieBayId,
 } from "../../shared";
-import React, { useEffect } from "react";
+import React from "react";
 import { BsFileEarmarkPostFill } from "react-icons/bs";
 import { Layout } from "../../app";
 
 export const DetailMovie = () => {
   const { id } = useParams();
+
   const [data, isLoading, error] = useGetMovieBayId(Number(id));
+
   const [allMovies] = useGetAllMovies();
+
   const movie: IMovieType = data as IMovieType;
+
   const similar = allMovies?.filter((item: IMovieType) => {
     return item.category === movie?.category;
   });
@@ -30,16 +35,20 @@ export const DetailMovie = () => {
 
         <div className="bg-movie z-101  w-full h-screen absolute top-0 left-0 bottom-0 right-0">
           <Container>
-            <div className="flex w-[50%]  items-center h-screen ">
+            <div className="flex lg:w-[50%] w-full items-center h-screen ">
               <div>
                 <img
                   src={movie?.logo}
                   alt="Logo"
-                  className="w-[500px] h-[100px]"
+                  className="md:w-[500px] lg:w-[380px] xl:w-[500px] w-full h-[100px]"
                 />
-                <h2 className="mb-4 mt-10">{movie?.title}</h2>
+                <h2 className="md:mb-4 lg:mb-2 xl:mb-4 mb-2 mt-5 md:mt-10">
+                  {movie?.title}
+                </h2>
                 <span className="text-white/50">{movie?.cast}</span>
-                <p className="mt-8 mb-4">{movie?.description}</p>
+                <p className="md:mt-8 mt-4 text-md lg:text-[18px] xl:text-[22px] md:text-[22px] mb-4">
+                  {movie?.description}
+                </p>
                 <span className="block">
                   <span className="text-white/50 mr-1">В ролях:</span>
                   {movie?.release}
@@ -61,19 +70,26 @@ export const DetailMovie = () => {
             <img src="/favicon.ico" alt="Img" className="w-[50px] h-[50px]" />
             <span className="font-bold">Смотрите сколько хотите.</span>
           </div>
-          <Button variant="contained" size="text-sm" link="/login">
-            ПРИСОЕДИНЯЙТЕСЬ
-          </Button>
+          <Link to="/login">
+            <Button variant="contained" size="text-sm">
+              СМОТРЕТЬ
+            </Button>
+          </Link>
         </div>
         <div className="border-y border-white/50 py-4 mt-10 flex items-center justify-center">
-          <span className="text-center w-[50%]">{movie?.description}</span>
+          <span className="text-center w-full md:w-[50%]">
+            {movie?.description}
+          </span>
         </div>
-        <div className="mt-8">
+        <div className="md:mt-8 mt-4 ">
           <h2>Похожие</h2>
           <div className="flex mt-2 items-center flex-wrap">
             {similar?.map((movie: IMovieType) => {
               return (
-                <div key={movie.id} className="mr-5 w-[250px]">
+                <div
+                  key={movie.id}
+                  className="md:mr-5 w-full mb-2 last:mb-0 md:w-[250px]"
+                >
                   <MovieCard isSimilar={true} {...movie} />
                 </div>
               );

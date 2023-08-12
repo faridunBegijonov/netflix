@@ -46,6 +46,13 @@ p {
   background: linear-gradient(90deg,#333 5%,#181818 95%);
 }
 
+input:focus {
+  border-bottom: 4px solid #E87C03FF;
+}
+
+.bg-banner-auth {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 
 @media (max-width: 600px) {
   .bg-banner {

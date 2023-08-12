@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import { Button, Container } from "../../shared";
+import { Button, Container, useAppSelector } from "../../shared";
 import { Link } from "react-router-dom";
 
 export const Navbar: FC = () => {
+  const { email, password, firstName } = useAppSelector((state) => state.auth);
+  const isLogin = JSON.parse(localStorage.getItem("userNetflix") as string);
   return (
     <nav className="py-4 bg-[#000000FF] ">
       <Container>
@@ -18,16 +20,24 @@ export const Navbar: FC = () => {
             <p className="text-sm mr-2 hidden md:block">
               ФИЛЬМЫ И СЕРИАЛЫ БЕЗ ОГРАНИЧЕНИЙ
             </p>
-            <Button
-              variant="contained"
-              link="/movies"
-              size="text-sm mr-2 hidden md:block"
-            >
-              СМОТРЕТЬ
-            </Button>
-            <Button variant="outlined" link="/login" size="text-sm">
-              ВОЙТИ
-            </Button>
+            <Link to="/movies">
+              <Button variant="contained" size="text-sm mr-2 hidden md:block">
+                СМОТРЕТЬ
+              </Button>
+            </Link>
+            {isLogin ? (
+              <Link to="/home">
+                <Button variant="outlined" size="text-sm ml-2">
+                  ЛИЧНЫЙ КАБИНЕТ
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <Button variant="outlined" size="text-sm">
+                  ВОЙТИ
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </Container>

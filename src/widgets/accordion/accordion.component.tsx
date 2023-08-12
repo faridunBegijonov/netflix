@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { AccordionItem, Button, Container } from "../../shared";
 import { accordionModel } from "./accordion.model";
+import { Link } from "react-router-dom";
 
 export const Accordion: FC = () => {
   return (
@@ -23,14 +24,15 @@ export const Accordion: FC = () => {
             Готовы смотреть? Введите адрес электронной почты, чтобы оформить или
             возобновить подписку.
           </p>
-          <Button
-            variant="contained"
-            arrow={true}
-            size="text-[19px] md:text-[22px] mt-4"
-            link="/movies"
-          >
-            Смотреть
-          </Button>
+          <Link to="/movies">
+            <Button
+              variant="contained"
+              arrow={true}
+              size="text-[19px] md:text-[22px] mt-4"
+            >
+              Смотреть
+            </Button>
+          </Link>
         </div>
       </Container>
     </div>
