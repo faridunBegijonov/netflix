@@ -12,13 +12,13 @@ export const Banner: FC = () => {
       <div className="bg-banner scale-105 md:scale-1 h-screen w-full z-100 absolute left-0 top-0 bottom-0 flex items-center justify-center right-0">
         <div className="xl:w-[70%] w-full">
           <Container>
-            <h1 className="xl:text-[60px] md:text-[45px] text-[30px] tracking-tighter-[0px] xl:leading-[75px] leading-[45px] md:text-center">
+            <h1 className="xl:text-[63px] md:text-md text-[30px] text-center tracking-tighter-[0px] xl:leading-[75px] leading-[45px]">
               Фильмы, сериалы и многое другое без ограничений
             </h1>
-            <p className="md:text-center md:text-[24px] text-md md:my-2 my-1">
+            <p className="md:text-[24px] text-center text-md md:my-2 my-1">
               Смотрите где угодно. Отменить подписку можно в любое время.
             </p>
-            <p className="md:text-center md:text-[24px] text-md">
+            <p className="text-center md:text-[24px] text-md">
               Готовы смотреть? Введите адрес электронной почты, чтобы оформить
               или возобновить подписку.
             </p>

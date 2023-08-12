@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, ReactPropTypes } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 

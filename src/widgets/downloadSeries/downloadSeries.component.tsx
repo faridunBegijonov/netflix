@@ -3,7 +3,7 @@ import { Container } from "../../shared";
 
 export const DownloadSeries: FC = () => {
   return (
-    <section className="py-[92px] bg-[#000000FF] my-2">
+    <section className="md:py-[92px] py-[42px] bg-[#000000FF] my-2">
       <Container>
         <div className="lg:flex flex-row-reverse  items-center justify-between">
           <div className="w-full lg:w-[50%]">

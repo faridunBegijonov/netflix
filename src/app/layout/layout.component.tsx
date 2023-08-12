@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { Navbar } from "../../widgets";
+import { Footer, Navbar } from "../../widgets";
 
 type LayoutType = { children: ReactNode };
 
@@ -8,7 +8,7 @@ export const Layout: FC<LayoutType> = ({ children }) => {
     <>
       <Navbar />
       {children}
-      <footer>footer</footer>
+      <Footer />
     </>
   );
 };

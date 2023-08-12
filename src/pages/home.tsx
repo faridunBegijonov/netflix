@@ -1,21 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Layout } from "../app";
-import {
-  Banner,
-  CreateProfiles,
-  DownloadSeries,
-  SeeAnywhere,
-  WatchOnTv,
-} from "../widgets";
+import { Accordion, Banner, CreateProfiles, DownloadSeries } from "../widgets";
 
 export const HomePage: FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Layout>
       <Banner />
-      <WatchOnTv />
       <DownloadSeries />
-      <SeeAnywhere />
       <CreateProfiles />
+      <Accordion />
     </Layout>
   );
 };
