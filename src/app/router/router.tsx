@@ -1,6 +1,13 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { Auth, Error, HomePage, MovieDetail, Movies } from "../../pages";
+import {
+  Auth,
+  Error,
+  HomePage,
+  MovieDetail,
+  Movies,
+  Profile,
+} from "../../pages";
 
 export const router = createBrowserRouter([
   {
@@ -23,5 +30,9 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Auth />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);

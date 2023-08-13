@@ -1,14 +1,10 @@
 import React, { FC, useState } from "react";
-import { useAppDispatch } from "../../shared";
+import { IUserType, useAppDispatch } from "../../shared";
 import { login } from "../../app/store/slices";
 import { useNavigate } from "react-router-dom";
-type AuthTypeState = {
-  firstName: string;
-  email: string;
-  password: number | null;
-};
+
 export const AuthProcess: FC = () => {
-  const [isLogin, setIsLogin] = useState<AuthTypeState>({
+  const [isLogin, setIsLogin] = useState<IUserType>({
     firstName: "",
     email: "",
     password: null,
@@ -23,14 +19,13 @@ export const AuthProcess: FC = () => {
   );
 
   const logging = () => {
-    const user: AuthTypeState = {
+    const user: IUserType = {
       firstName: isLogin.firstName,
       email: isLogin.email,
       password: isLogin.password,
     };
     dispatch(login(user));
-    console.log("Success");
-    setIsLogin((prevState: AuthTypeState) => ({
+    setIsLogin((prevState: IUserType) => ({
       ...prevState,
       email: "",
       password: null,
@@ -43,7 +38,7 @@ export const AuthProcess: FC = () => {
       <input
         value={isLogin.firstName}
         onChange={(event) =>
-          setIsLogin((prev: AuthTypeState) => ({
+          setIsLogin((prev: IUserType) => ({
             ...prev,
             firstName: event.target.value,
           }))
@@ -56,7 +51,7 @@ export const AuthProcess: FC = () => {
       <input
         value={isLogin.email}
         onChange={(event) =>
-          setIsLogin((prev: AuthTypeState) => ({
+          setIsLogin((prev: IUserType) => ({
             ...prev,
             email: event.target.value,
           }))
@@ -68,7 +63,7 @@ export const AuthProcess: FC = () => {
       <input
         value={isLogin.password || ""}
         onChange={(event) =>
-          setIsLogin((prev: AuthTypeState) => ({
+          setIsLogin((prev: IUserType) => ({
             ...prev,
             password: +event.target.value,
           }))

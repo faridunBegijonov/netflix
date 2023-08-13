@@ -1,12 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IUserType } from "../../../shared";
 
-interface IAuthSlice {
-  firstName: string;
-  email: string;
-  password: number | null;
-}
-
-const initialState: IAuthSlice = {
+const initialState: IUserType = {
   email: "",
   firstName: "",
   password: null,
@@ -22,8 +17,8 @@ export const authSlice = createSlice({
       state.firstName = payload.firstName;
       state.password = payload.password;
     },
-    goOut: (state) => {
-      localStorage.clear();
+    goOut: (state, { payload }) => {
+      localStorage.setItem("userNetflix", JSON.stringify(payload));
       state.email = "";
       state.firstName = "";
       state.password = null;

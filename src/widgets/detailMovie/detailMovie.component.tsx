@@ -4,26 +4,36 @@ import {
   Container,
   IMovieType,
   MovieCard,
-  useAppSelector,
+  useAppDispatch,
   useGetAllMovies,
   useGetMovieBayId,
+  useLogin,
 } from "../../shared";
-import React from "react";
+import React, { useState } from "react";
 import { BsFileEarmarkPostFill } from "react-icons/bs";
 import { Layout } from "../../app";
+import { addToSaves } from "../../app/store/slices";
 
 export const DetailMovie = () => {
   const { id } = useParams();
 
+  const { isLogin, error: errorLogin } = useLogin();
+
   const [data, isLoading, error] = useGetMovieBayId(Number(id));
 
   const [allMovies] = useGetAllMovies();
+
+  const dispatch = useAppDispatch();
 
   const movie: IMovieType = data as IMovieType;
 
   const similar = allMovies?.filter((item: IMovieType) => {
     return item.category === movie?.category;
   });
+
+  const saves = () => {
+    dispatch(addToSaves(movie));
+  };
   return (
     <Layout>
       <div className="relative h-screen">
@@ -53,7 +63,11 @@ export const DetailMovie = () => {
                   <span className="text-white/50 mr-1">В ролях:</span>
                   {movie?.release}
                 </span>
-                <button className="bg-transparent mt-4 border-[1px] border-solid border-[#fff] px-4 py-2 w-full md:w-auto justify-center font-bold rounded-[2px] flex items-center">
+                <button
+                  disabled={!isLogin || errorLogin}
+                  onClick={saves}
+                  className="bg-transparent mt-4 border-[1px] border-solid border-[#fff] px-4 py-2 w-full md:w-auto justify-center font-bold rounded-[2px] flex items-center"
+                >
                   Сохранить
                   <i className="ml-2 ">
                     <BsFileEarmarkPostFill />

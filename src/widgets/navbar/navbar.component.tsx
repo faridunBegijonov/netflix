@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { Button, Container, useAppSelector } from "../../shared";
+import { Button, Container, useLogin } from "../../shared";
 import { Link } from "react-router-dom";
 
 export const Navbar: FC = () => {
-  const { email, password, firstName } = useAppSelector((state) => state.auth);
-  const isLogin = JSON.parse(localStorage.getItem("userNetflix") as string);
+  const { isLogin } = useLogin();
   return (
     <nav className="py-4 bg-[#000000FF] ">
       <Container>
@@ -26,8 +25,8 @@ export const Navbar: FC = () => {
               </Button>
             </Link>
             {isLogin ? (
-              <Link to="/home">
-                <Button variant="outlined" size="text-sm ml-2">
+              <Link to="/profile">
+                <Button variant="outlined" size="text-sm">
                   ЛИЧНЫЙ КАБИНЕТ
                 </Button>
               </Link>
