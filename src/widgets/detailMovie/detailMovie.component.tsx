@@ -1,23 +1,30 @@
 import { Link, useParams } from "react-router-dom";
 import {
+  Alert,
   Button,
   Container,
   IMovieType,
   MovieCard,
   useAppDispatch,
+  useAppSelector,
   useGetAllMovies,
   useGetMovieBayId,
   useLogin,
 } from "../../shared";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFileEarmarkPostFill } from "react-icons/bs";
 import { Layout } from "../../app";
 import { addToSaves } from "../../app/store/slices";
+import { doc } from "prettier";
 
 export const DetailMovie = () => {
   const { id } = useParams();
 
   const { isLogin, error: errorLogin } = useLogin();
+
+  const { movies } = useAppSelector((state) => state.saves);
+
+  const [isOpenAlert, setIsOpenAlert] = useState<boolean>(false);
 
   const [data, isLoading, error] = useGetMovieBayId(Number(id));
 
@@ -27,13 +34,28 @@ export const DetailMovie = () => {
 
   const movie: IMovieType = data as IMovieType;
 
-  const similar = allMovies?.filter((item: IMovieType) => {
-    return item.category === movie?.category;
-  });
+  const similar = allMovies
+    ?.filter((item: IMovieType) => {
+      return item.category === movie?.category;
+    })
+    .filter((movie: IMovieType) => {
+      return movie.id !== Number(id);
+    });
 
   const saves = () => {
+    setIsOpenAlert(true);
     dispatch(addToSaves(movie));
+    setTimeout(() => {
+      setIsOpenAlert(false);
+    }, 2000);
   };
+
+  useEffect(() => {
+    document.title = movie?.title;
+    return () => {
+      document.title = "Netflix Таджикистан — Смотрите сериалы и фильмы онлайн";
+    };
+  });
   return (
     <Layout>
       <div className="relative h-screen">
@@ -95,22 +117,25 @@ export const DetailMovie = () => {
             {movie?.description}
           </span>
         </div>
-        <div className="md:mt-8 mt-4 ">
-          <h2>Похожие</h2>
-          <div className="flex mt-2 items-center flex-wrap">
-            {similar?.map((movie: IMovieType) => {
-              return (
-                <div
-                  key={movie.id}
-                  className="md:mr-5 w-full mb-2 last:mb-0 md:w-[250px]"
-                >
-                  <MovieCard isSimilar={true} {...movie} />
-                </div>
-              );
-            })}
+        {similar?.length !== 0 && (
+          <div className="md:mt-8 mt-4 ">
+            <h2>Похожие</h2>
+            <div className="flex mt-2 flex-wrap">
+              {similar?.map((movie: IMovieType) => {
+                return (
+                  <div
+                    key={movie.id}
+                    className="md:mr-5 w-full mb-2 last:mb-0 md:w-[250px]"
+                  >
+                    <MovieCard isSimilar={true} {...movie} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </Container>
+      {isOpenAlert && <Alert title="Успешно добавлено" />}
     </Layout>
   );
 };

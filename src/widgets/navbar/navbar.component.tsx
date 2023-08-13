@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Button, Container, useLogin } from "../../shared";
 import { Link } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
 
 export const Navbar: FC = () => {
   const { isLogin } = useLogin();
@@ -37,6 +38,12 @@ export const Navbar: FC = () => {
                 </Button>
               </Link>
             )}
+            <Link
+              to="/search"
+              className=" px-4 py-2 flex items-center justify-center"
+            >
+              <BsSearch />
+            </Link>
           </div>
         </div>
       </Container>

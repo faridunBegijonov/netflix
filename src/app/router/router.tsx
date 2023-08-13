@@ -7,6 +7,7 @@ import {
   MovieDetail,
   Movies,
   Profile,
+  Search,
 } from "../../pages";
 
 export const router = createBrowserRouter([
@@ -34,5 +35,9 @@ export const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/search",
+    element: <Search />,
   },
 ]);
