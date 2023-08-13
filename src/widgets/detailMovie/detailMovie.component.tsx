@@ -20,7 +20,7 @@ import { doc } from "prettier";
 export const DetailMovie = () => {
   const { id } = useParams();
 
-  const { isLogin, error: errorLogin } = useLogin();
+  const { isLogin } = useLogin();
 
   const { movies } = useAppSelector((state) => state.saves);
 
@@ -78,7 +78,7 @@ export const DetailMovie = () => {
                   {movie?.title}
                 </h2>
                 <span className="text-white/50">{movie?.cast}</span>
-                <p className="md:mt-8 mt-4 text-md lg:text-[18px] xl:text-[22px] md:text-[22px] mb-4">
+                <p className="md:mt-8 mt-4 text-[16px] mb-4">
                   {movie?.description}
                 </p>
                 <span className="block">
@@ -86,11 +86,11 @@ export const DetailMovie = () => {
                   {movie?.release}
                 </span>
                 <button
-                  disabled={!isLogin || errorLogin}
+                  disabled={!isLogin}
                   onClick={saves}
                   className="bg-transparent mt-4 border-[1px] border-solid border-[#fff] px-4 py-2 w-full md:w-auto justify-center font-bold rounded-[2px] flex items-center"
                 >
-                  Сохранить
+                  {isLogin ? "Сохранить" : "Войдите чтобы сохранить"}
                   <i className="ml-2 ">
                     <BsFileEarmarkPostFill />
                   </i>
@@ -106,14 +106,12 @@ export const DetailMovie = () => {
             <img src="/favicon.ico" alt="Img" className="w-[50px] h-[50px]" />
             <span className="font-bold">Смотрите сколько хотите.</span>
           </div>
-          <Link to="/login">
-            <Button variant="contained" size="text-sm">
-              СМОТРЕТЬ
-            </Button>
-          </Link>
+          <Button variant="contained" size="text-sm">
+            {isLogin ? "СМОТРЕТЬ" : "Войдите чтобы смотреть"}
+          </Button>
         </div>
         <div className="border-y border-white/50 py-4 mt-10 flex items-center justify-center">
-          <span className="text-center w-full md:w-[50%]">
+          <span className="text-center text-sm w-full md:w-[50%]">
             {movie?.description}
           </span>
         </div>
@@ -125,7 +123,7 @@ export const DetailMovie = () => {
                 return (
                   <div
                     key={movie.id}
-                    className="md:mr-5 w-full mb-2 last:mb-0 md:w-[250px]"
+                    className="md:mr-5 w-full mb-2 last:mb-0 md:w-[350px]"
                   >
                     <MovieCard isSimilar={true} {...movie} />
                   </div>

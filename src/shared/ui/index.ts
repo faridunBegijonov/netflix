@@ -4,3 +4,4 @@ export * from "./accordion";
 export * from "./movieCard";
 export * from "./sliderBtn";
 export * from "./alert";
+export * from "./select";
