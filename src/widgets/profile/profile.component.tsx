@@ -73,13 +73,21 @@ export const ProfileComponent: FC = () => {
                   </Link>
                 </span>
               )}
-              <div className="flex mt-2 flex-wrap">
+              <div
+                className={`${
+                  movies.length >= 4 ? "grid-container" : "flex flex-wrap"
+                } mt-2`}
+              >
                 {Array.isArray(movies) &&
                   movies?.map((movie: IMovieType) => {
                     return (
                       <div
                         key={movie.id}
-                        className="md:mr-5 w-full mb-2 last:mb-0 md:w-[250px]"
+                        className={`${
+                          movies.length >= 4
+                            ? "w-full"
+                            : "lg:w-[350px] md:w-[45%] w-full last:mr-0 md:mr-4 mb-[35px]"
+                        }  xl:h-[200px] h-[180px] mb-2`}
                       >
                         <MovieCard {...movie} />
                       </div>

@@ -74,12 +74,22 @@ export const SearchComponent: FC = () => {
               <Select category={category} filterByCategory={filterByCategory} />
             </div>
           </div>
-          <div className="grid-container mt-8">
+          <div
+            className={`${
+              Array.isArray(filtersMovies) && filtersMovies?.length >= 4
+                ? "grid-container"
+                : "flex flex-wrap"
+            } mt-8`}
+          >
             {filtersMovies?.length !== 0 ? (
               filtersMovies?.map((movie: IMovieType) => {
                 return (
                   <div
-                    className="w-full xl:h-[200px] h-[180px] mb-2"
+                    className={`${
+                      Array.isArray(filtersMovies) && filtersMovies?.length >= 4
+                        ? "w-full"
+                        : "lg:w-[350px] md:w-[45%] w-full last:mr-0 md:mr-4 mb-[35px]"
+                    }  xl:h-[200px] h-[180px] mb-2`}
                     key={movie.id}
                   >
                     <MovieCard {...movie} />
