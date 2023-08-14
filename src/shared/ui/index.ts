@@ -5,3 +5,4 @@ export * from "./movieCard";
 export * from "./sliderBtn";
 export * from "./alert";
 export * from "./select";
+export * from "./pagination";

@@ -6,6 +6,5 @@ export const useLogin = () => {
   const isLogin = Boolean(
     loginData.email && loginData.firstName && loginData.password,
   );
-  console.log(loginData.email);
   return { loginData, isLogin };
 };

@@ -9,3 +9,4 @@ export * from "./footer";
 export * from "./detailMovie";
 export * from "./auth";
 export * from "./profile";
+export * from "./search";

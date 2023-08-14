@@ -123,7 +123,7 @@ export const DetailMovie = () => {
                 return (
                   <div
                     key={movie.id}
-                    className="md:mr-5 w-full mb-2 last:mb-0 md:w-[350px]"
+                    className="md:mr-5 w-full mb-2 last:mb-0 md:w-[250px]"
                   >
                     <MovieCard isSimilar={true} {...movie} />
                   </div>
