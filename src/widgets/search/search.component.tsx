@@ -1,6 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import {
   Container,
+  getMoviesByPage,
   IMovieType,
   MovieCard,
   Pagination,
@@ -8,12 +9,9 @@ import {
   useFilterByCategory,
   useFilterMovies,
   useGetAllMovies,
+  usePagination,
 } from "../../shared";
 import { Layout } from "../../app";
-import {
-  getMoviesByPage,
-  usePagination,
-} from "../../shared/hooks/hookPagination";
 
 export const SearchComponent: FC = () => {
   const [search, setSearch] = useState<string>("");
@@ -48,10 +46,12 @@ export const SearchComponent: FC = () => {
     setFiltersMovies(filtersSearch);
   }, [search]);
 
-  const getDataPagination = async (page: number) => {
-    const dataPagination = await getMoviesByPage(page);
-    setFiltersMovies(dataPagination);
-  };
+  const getDataPagination = useMemo(() => {
+    return async (page: number) => {
+      const dataPagination = await getMoviesByPage(page);
+      setFiltersMovies(dataPagination);
+    };
+  }, [page]);
 
   useEffect(() => {
     getDataPagination(page);

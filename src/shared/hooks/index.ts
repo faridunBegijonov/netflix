@@ -5,3 +5,4 @@ export * from "./hookLogin";
 export * from "./hookLocalStorage";
 export * from "./hookFilterMovies";
 export * from "./hookAuth";
+export * from "./hookPagination";

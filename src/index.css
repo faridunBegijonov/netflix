@@ -89,8 +89,8 @@ input:focus {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  grid-column-gap: 20px;
-  grid-row-gap: 40px;
+  grid-column-gap: 10px;
+  grid-row-gap: 30px;
 }
 
 @media (max-width: 600px) {

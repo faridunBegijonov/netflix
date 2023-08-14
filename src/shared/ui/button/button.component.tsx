@@ -19,8 +19,8 @@ export const Button: FC<ButtonType> = ({
       className={`${
         variant === "contained"
           ? "bg-[#DE0611FF] border-[1px] border-solid border-[#DE0611FF]"
-          : "bg-transparent border-[1px] border-solid border-[#fff]"
-      } px-4 py-2 ${size} w-full md:w-auto justify-center  font-bold rounded-[2px] flex items-center`}
+          : "bg-transparent hover:bg-[#313131FF] border-[1px] border-solid border-[#fff]"
+      } px-4 py-2 ${size} w-full transition-colors md:w-auto justify-center  font-bold rounded-[2px] flex items-center`}
     >
       {children}
       {arrow && (

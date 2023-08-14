@@ -64,7 +64,7 @@ export const ProfileComponent: FC = () => {
               </div>
             </div>
             <div className="md:mt-8 mt-4 ">
-              <h2>Сохронненое</h2>
+              <h2>Сохранненое</h2>
               {movies.length === 0 && (
                 <span className="font-bold text-white/50">
                   Вы нечего не сохранили{" "}

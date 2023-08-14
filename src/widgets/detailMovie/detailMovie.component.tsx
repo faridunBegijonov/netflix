@@ -6,33 +6,26 @@ import {
   IMovieType,
   MovieCard,
   useAppDispatch,
-  useAppSelector,
   useGetAllMovies,
   useGetMovieBayId,
+  useGetStorage,
   useLogin,
 } from "../../shared";
 import React, { useEffect, useState } from "react";
 import { BsFileEarmarkPostFill } from "react-icons/bs";
 import { Layout } from "../../app";
 import { addToSaves } from "../../app/store/slices";
-import { doc } from "prettier";
+import { InformationMovies } from "./informationMovies.component";
 
 export const DetailMovie = () => {
   const { id } = useParams();
-
   const { isLogin } = useLogin();
-
-  const { movies } = useAppSelector((state) => state.saves);
-
   const [isOpenAlert, setIsOpenAlert] = useState<boolean>(false);
-
   const [data, isLoading, error] = useGetMovieBayId(Number(id));
-
   const [allMovies] = useGetAllMovies();
-
   const dispatch = useAppDispatch();
 
-  const movie: IMovieType = data as IMovieType;
+  const movie = data as IMovieType;
 
   const similar = allMovies
     ?.filter((item: IMovieType) => {
@@ -40,7 +33,8 @@ export const DetailMovie = () => {
     })
     .filter((movie: IMovieType) => {
       return movie.id !== Number(id);
-    });
+    })
+    .slice(0, 8);
 
   const saves = () => {
     setIsOpenAlert(true);
@@ -50,12 +44,19 @@ export const DetailMovie = () => {
     }, 2000);
   };
 
+  const savesMovies: IMovieType[] = useGetStorage("savesNetflix");
+  const isSave = savesMovies.some(
+    (movie: IMovieType) => movie.id === Number(id),
+  );
+
   useEffect(() => {
-    document.title = movie?.title;
+    if (movie) document.title = movie?.title;
+    window.scrollTo(0, 0);
     return () => {
       document.title = "Netflix Таджикистан — Смотрите сериалы и фильмы онлайн";
     };
   });
+
   return (
     <Layout>
       <div className="relative h-screen">
@@ -115,6 +116,7 @@ export const DetailMovie = () => {
             {movie?.description}
           </span>
         </div>
+        <InformationMovies release={movie ? movie?.release : ""} />
         {similar?.length !== 0 && (
           <div className="md:mt-8 mt-4 ">
             <h2>Похожие</h2>
@@ -141,7 +143,11 @@ export const DetailMovie = () => {
           </div>
         )}
       </Container>
-      {isOpenAlert && <Alert title="Успешно добавлено" />}
+      {isOpenAlert && (
+        <Alert
+          title={`${isSave ? "Этот фильм уже сохранен" : "Успешно добавлено"}`}
+        />
+      )}
     </Layout>
   );
 };

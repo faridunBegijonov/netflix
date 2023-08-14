@@ -10,7 +10,7 @@ export const Accordion: FC = () => {
         <h1 className="text-center text-[30px] md:text-[45px]">
           Распространенные вопросы
         </h1>
-        <div className="mt-4">
+        <div className="mt-4 w-full md:w-[70%] mx-auto">
           {accordionModel.map((accordion) => {
             return (
               <div key={accordion.title} className="mb-2 last:mb-0">

@@ -19,7 +19,8 @@ export const Pagination: FC<PaginationType> = ({
     <div className="flex items-center">
       {pages.map((page, index) => {
         return (
-          <span
+          <button
+            disabled={pages[index] === pageState && true}
             onClick={() => handlePagination(page)}
             className={`${
               pages[index] === pageState && "bg-[#000000FF]"
@@ -27,7 +28,7 @@ export const Pagination: FC<PaginationType> = ({
             key={page}
           >
             {page}
-          </span>
+          </button>
         );
       })}
     </div>
