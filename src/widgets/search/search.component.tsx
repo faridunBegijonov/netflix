@@ -74,12 +74,12 @@ export const SearchComponent: FC = () => {
               <Select category={category} filterByCategory={filterByCategory} />
             </div>
           </div>
-          <div className="flex flex-wrap mt-8">
+          <div className="grid-container mt-8">
             {filtersMovies?.length !== 0 ? (
               filtersMovies?.map((movie: IMovieType) => {
                 return (
                   <div
-                    className="md:w-[280px] w-full md:mr-4 mb-2"
+                    className="w-full xl:h-[200px] h-[180px] mb-2"
                     key={movie.id}
                   >
                     <MovieCard {...movie} />
@@ -92,7 +92,9 @@ export const SearchComponent: FC = () => {
               </span>
             )}
           </div>
-          <Pagination paginationFn={paginationFn} />
+          <div className="mt-16">
+            <Pagination paginationFn={paginationFn} />
+          </div>
         </Container>
       </div>
     </Layout>

@@ -19,8 +19,8 @@ export const MovieCard: FC<MovieCardType> = ({
       className="w-full"
       to={isSimilar ? `/movies/similar/${id}` : `/movies/${id}`}
     >
-      <img src={img} className="w-full" alt="Img" />
-      <p className="text-center text-sm  mt-1">{title}</p>
+      <img src={img} className="w-full h-full " alt="Img" />
+      <p className="text-center text-sm  mt-2">{title}</p>
     </Link>
   );
 };

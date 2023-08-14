@@ -23,7 +23,7 @@ export const Pagination: FC<PaginationType> = ({
             onClick={() => handlePagination(page)}
             className={`${
               pages[index] === pageState && "bg-[#000000FF]"
-            } mr-2 w-[30px] cursor-pointer select-none h-[30px] text-white/50 font-bold flex items-center justify-center border-[1px] border-white/50 border-solid`}
+            } mr-2 w-[50px] cursor-pointer select-none h-[50px] font-bold flex items-center justify-center border-[1px] border-white/50 border-solid`}
             key={page}
           >
             {page}

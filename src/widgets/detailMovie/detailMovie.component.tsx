@@ -118,13 +118,10 @@ export const DetailMovie = () => {
         {similar?.length !== 0 && (
           <div className="md:mt-8 mt-4 ">
             <h2>Похожие</h2>
-            <div className="flex mt-2 flex-wrap">
+            <div className="grid-container mt-2">
               {similar?.map((movie: IMovieType) => {
                 return (
-                  <div
-                    key={movie.id}
-                    className="md:mr-5 w-full mb-2 last:mb-0 md:w-[250px]"
-                  >
+                  <div key={movie.id} className="w-full xl:h-[200px] h-[180px]">
                     <MovieCard isSimilar={true} {...movie} />
                   </div>
                 );
