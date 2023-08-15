@@ -73,7 +73,7 @@ export const DetailMovie = () => {
                 <img
                   src={movie?.logo}
                   alt="Logo"
-                  className="md:w-[500px] lg:w-[380px] xl:w-[500px] w-full h-[100px]"
+                  className="md:w-[500px] lg:w-[380px] xl:w-[500px] w-full h-[150px]"
                 />
                 <h2 className="md:mb-4 lg:mb-2 xl:mb-4 mb-2 mt-5 md:mt-10">
                   {movie?.title}

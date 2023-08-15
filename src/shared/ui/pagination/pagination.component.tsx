@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-import { useGetAllMovies } from "../../hooks";
 
 type PaginationType = {
   paginationFn: (page: number) => void;
@@ -7,14 +6,14 @@ type PaginationType = {
 export const Pagination: FC<PaginationType> = ({
   paginationFn,
 }: PaginationType) => {
-  // const [data] = useGetAllMovies();
   const [pageState, setPageState] = useState(1);
-  const pages = [1, 2, 3];
 
+  const pages: number[] = [1, 2, 3];
   const handlePagination = (page: number) => {
     paginationFn(page);
     setPageState(page);
   };
+
   return (
     <div className="flex items-center">
       {pages.map((page, index) => {

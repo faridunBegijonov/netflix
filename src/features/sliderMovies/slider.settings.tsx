@@ -6,7 +6,7 @@ const width = window.innerWidth;
 export const settings = {
   infinite: false,
   speed: 1000,
-  slidesToShow: width >= 600 ? 4 : 1,
+  slidesToShow: width >= 600 ? 4.5 : 1.5,
   slidesToScroll: width >= 600 ? 4 : 1,
   nextArrow: <IoIosArrowForward />,
   prevArrow: <IoIosArrowBack />,
