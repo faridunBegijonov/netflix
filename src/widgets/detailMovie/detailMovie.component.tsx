@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Alert,
   Button,
@@ -56,6 +56,10 @@ export const DetailMovie = () => {
       document.title = "Netflix Таджикистан — Смотрите сериалы и фильмы онлайн";
     };
   });
+
+  useEffect(() => {
+    console.log("IsChanged");
+  }, [id]);
 
   return (
     <Layout>
